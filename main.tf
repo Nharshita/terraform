@@ -1,6 +1,5 @@
 provider "google" {
         project = "exalted-legacy-330405"
-        credentials = "/home/harshitha_csn/terralab/key.json"
         region = "us-central1"
 }
 resource "google_compute_instance" "myvm" {
