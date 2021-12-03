@@ -1,0 +1,15 @@
+gcloud container clusters create my-cluster --num-nodes 1 --zone us-central1-a
+
+gcloud container clusters get-credentials my-cluster
+
+kubectl cluster-info
+
+kubectl top nodes
+
+kubectl run nginx-1 --image nginx:latest
+
+kubectl get pods
+
+kubectl describe pod nginx-1
+
+gcloud container clusters delete my-cluster
