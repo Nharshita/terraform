@@ -1,0 +1,63 @@
+Deployment
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: mywebsite
+    tier: frontend
+spec:
+  replicas: 4
+  template:
+    metadata:
+      name: myapp-pod
+      labels:
+        app: myapp
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+  selector:
+    matchLabels:
+      app: myapp
+      app: myapp
+
+
+>
+kubectl create f deployment definition.yml
+>
+kubectl get deployments
+kubectl get replicasets
+kubectl get po
+kubectl rollout status deployment/ myapp-deployment
+
+kubectl rollout history deployment/ myapp-deployment
+kubectl apply f deployment definition.yml
+>
+kubectl set image deployment/ myapp deployment nginx =nginx:1.9.1
+>
+kubectl rollout undo deployment/ myapp deployment
+kubectl get replicasets
+
+
+
+Services- NodePort:
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  labels:
+    app: myapp
+spec:
+  type: NodePort
+  ports:
+    - port: 80
+      targetPort: 80
+  selector:
+    app: myapp
+
+kubectl create f service definition.yml
+kubectl get services
+> curl http://192.168.1.2:30008
